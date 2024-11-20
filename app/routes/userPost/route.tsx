@@ -33,7 +33,6 @@ export default function Comments() {
                                 </Form>
                         <Outlet/>
                     </li>
-                    
                 ))}
             </ul>
         </div>

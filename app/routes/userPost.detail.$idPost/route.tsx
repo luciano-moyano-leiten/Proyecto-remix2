@@ -9,7 +9,7 @@ export const loader: LoaderFunction = async ({ params }) => {
 const commentsResponse = await fetch(`https://jsonplaceholder.typicode.com/comments?postId=${idPost}`);
 const userData = await commentsResponse.json();
 
-//SEGUNDO FERCH SOBRE CADA COMENTARIO PARA OBTENER EL NOMBRE DLE USUARIO
+//SEGUNDO FETCH SOBRE CADA COMENTARIO PARA OBTENER EL NOMBRE DEL USUARIO
 
 const comentariosConUsuario = await Promise.all(userData.map(async (comment: any) => {
     const userResponse = await fetch(`https://jsonplaceholder.typicode.com/users?id=${comment.id}`);
@@ -29,8 +29,6 @@ export const action: ActionFunction = async ({ request, params }) => {
 };
 
 //necesito mostrar los comentarios del usuario en un formulario que no se pueda modificar 
-
-
 export default function Detail(){
     const {idPost} = useParams();
     const comentariosConUsuario = useLoaderData<any>();
@@ -40,8 +38,8 @@ export default function Detail(){
             {comentariosConUsuario.map((comment: any) => (
                 <li key={comment.id}>
                     <p>nombre : {comment.user.name}</p>
-                    <p>{comment.email}</p>
-                    <p>{comment.body}</p>
+                    <p>email : {comment.email}</p>
+                    <p>comment : {comment.body}</p>
                 </li>
             ))}
         </ul>
